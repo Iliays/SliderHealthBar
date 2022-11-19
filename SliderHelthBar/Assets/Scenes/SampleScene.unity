@@ -799,7 +799,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _player: {fileID: 657669390}
   _healthBar: {fileID: 829110892}
-  _changeSpeed: 6
+  _changeSpeed: 1
 --- !u!1 &938408488
 GameObject:
   m_ObjectHideFlags: 0

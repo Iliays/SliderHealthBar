@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using DG.Tweening;
 
 public class HealthBar : MonoBehaviour
 {
@@ -14,8 +15,18 @@ public class HealthBar : MonoBehaviour
 		_healthBar.value = _player.Health;
 	}
 
-	private void Update()
+	private void OnEnable()
 	{
-		_healthBar.value = Mathf.MoveTowards(_healthBar.value, _player.Health, _changeSpeed * Time.deltaTime);
+		_player.HealthChanged += OnHealthChanged;
+	}
+
+	private void OnDisable()
+	{
+		_player.HealthChanged -= OnHealthChanged;
+	}
+
+	private void OnHealthChanged(int health)
+	{
+		_healthBar.DOValue(health, _changeSpeed);
 	}
 }

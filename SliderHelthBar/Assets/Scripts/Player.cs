@@ -1,12 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField] private int _health;
+	[SerializeField] private int _health;
 
 	private int _maxHealth;
+
+	public event UnityAction<int> HealthChanged;
 
 	public int Health => _health;
 
@@ -20,14 +23,16 @@ public class Player : MonoBehaviour
 		if (_health > 0)
 		{
 			_health -= damage;
+			HealthChanged?.Invoke(_health);
 		}
 	}
 
-    public void Heal(int health)
+	public void Heal(int health)
 	{
 		if (_health < _maxHealth)
 		{
 			_health += health;
+			HealthChanged?.Invoke(_health);
 		}
 	}
 }
