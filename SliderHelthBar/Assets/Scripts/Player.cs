@@ -9,9 +9,9 @@ public class Player : MonoBehaviour
 
 	private int _maxHealth;
 
-	public event UnityAction<int> HealthChanged;
-
 	public int Health => _health;
+
+	public event UnityAction<int> HealthChanged;
 
 	private void Start()
 	{

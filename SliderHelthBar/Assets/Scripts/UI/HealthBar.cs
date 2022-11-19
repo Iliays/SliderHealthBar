@@ -10,11 +10,6 @@ public class HealthBar : MonoBehaviour
 	[SerializeField] private Slider _healthBar;
 	[SerializeField] private int _changeSpeed;
 
-	private void Start()
-	{
-		_healthBar.value = _player.Health;
-	}
-
 	private void OnEnable()
 	{
 		_player.HealthChanged += OnHealthChanged;
@@ -23,6 +18,11 @@ public class HealthBar : MonoBehaviour
 	private void OnDisable()
 	{
 		_player.HealthChanged -= OnHealthChanged;
+	}
+
+	private void Start()
+	{
+		_healthBar.value = _player.Health;
 	}
 
 	private void OnHealthChanged(int health)
